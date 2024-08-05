@@ -1,0 +1,23 @@
+<%- include('../page/layout-start.ejs', {title: title}) %>
+
+<main class="main">
+  <div class="container">
+    <h1><%= title %></h1>
+    <h2>Введите данные для авторизации</h2>
+    <form class="addForm" action="/api/user/login" method="post">
+      <label for="username">Укажите логин*</label>
+      <input class="form__input" id="username" name="username" type="text" placeholder="Логин" required>
+      <label for="password">Укажите пароль*</label>
+      <input class="form__input" id="password" name="password" type="password" placeholder="Пароль" required>
+      <button class="addFormSubmitBtn" type="submit">Авторизоваться</button>
+    </form>
+    <div class="contCenter">
+      * - обязательное поле
+    </div>
+    <div class="contCenter">
+      Если вы еще не зарегистрированы, то <a href="/api/user/signup" title="Зарегистрироваться">Зарегистрируйтесь</a>.
+    </div>
+  </div>
+</main>
+
+<%- include('../page/layout-end.ejs') %>

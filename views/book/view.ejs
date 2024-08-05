@@ -1,0 +1,32 @@
+<%- include('../page/layout-start.ejs', {title: title, book: book}) %>
+
+<main class="main">
+  <div class="container">
+    <div class="back">
+      <a href="/api/books/book" title="Назад в библиотеку"><< Назад в библиотеку</a>
+    </div>
+    <h1><%= title %></h1>
+    <h2>Просмотр информации о книге <%= book.title %></h2>
+      <% if (book) { %>
+        <div class="card">
+          <div class="card__row">
+            <span class="bold">Название: </span><%= book.title %>
+          </div>
+          <div class="card__row">
+            <span class="bold">Авторы: </span><%= book.authors %>
+          </div>
+          <div class="card__row">
+            <span class="bold">Описание: </span><%= book.description %>
+          </div>
+          <div class="card__row">
+            <span class="bold">Изображение обложки: </span><%= book.fileCover %>
+          </div>
+          <div class="card__row">
+            <span class="bold">Ссылка для загрузки: </span><a href="/download/<%= book.id %>" title="">Скачать</a>
+          </div>
+        </div>
+      <% } %>
+  </div>
+</main>
+
+<%- include('../page/layout-end.ejs') %>

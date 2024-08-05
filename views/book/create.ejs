@@ -1,0 +1,17 @@
+<%- include('../page/layout-start.ejs', {title: title}) %>
+
+<main class="main">
+  <div class="container">
+    <div class="back">
+      <a href="/api/books/book" title="Назад в библиотеку"><< Назад в библиотеку</a>
+    </div>
+    <h1><%= title %></h1>
+    <h2>Добавление новой книги</h2>
+      <%- include('./form.ejs', {type: 'create'}) %>
+    <div class="addForm">
+      * - обязательное поле
+    </div>
+  </div>
+</main>
+
+<%- include('../page/layout-end.ejs') %>

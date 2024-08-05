@@ -1,0 +1,29 @@
+<%- include('../page/layout-start.ejs', {title: title, user: user}) %>
+
+<main class="main">
+  <div class="container">
+    <div class="meBlock bordered">
+      <h1><%= title %></h1>
+      <h3>Данные пользователя</h3>
+      <table class="userTable">
+        <tr>
+          <td>Логин: </td>
+          <td><%= user.username %></td>
+        </tr>
+        <tr>
+          <td>Имя: </td>
+          <td><%= user.displayName %></td>
+        </tr>
+        <tr>
+          <td>e-mail: </td>
+          <td><%= user.mail %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="meBlock">
+      <a href="/api/user/logout" title="Выйти">Выйти из кабинета</a>.
+    </div>
+  </div>
+</main>
+
+<%- include('../page/layout-end.ejs') %>

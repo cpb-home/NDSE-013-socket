@@ -1,0 +1,17 @@
+<form class="addForm" action="" method="post">
+  <label for="title">Укажите название книги*</label>
+  <input class="form__input" id="title" name="title" type="text" placeholder="Название" value="<%= book.title %>" required>
+  <label for="authors">Укажите авторов книги*</label>
+  <input class="form__input" id="authors" name="authors" type="text" placeholder="Авторы" value="<%= book.authors %>" required>
+  <label for="description">Описание книги*</label>
+  <textarea class="form__input" id="description" name="description" placeholder="Описание" required><%= book.description %></textarea>
+  <label for="fileCover">Изображение обложки</label>
+  <input class="form__input" id="fileCover" name="fileCover" type="file" value="<%= book.fileCover %>" placeholder="Название">
+  <label for="fileName">Название файла</label>
+  <input class="form__input" id="fileName" name="fileName" type="text" value="<%= book.fileName %>" placeholder="Название">
+  <label for="fileBook">Файл книги</label>
+  <input class="form__input" id="fileBook" name="fileBook" type="file" value="<%= book.fileBook %>" placeholder="Название">
+  <label for="favorite">Добавить в избранное</label>
+  <input class="form__input" id="favorite" name="favorite" type="checkbox" value="<%= book.favorite %>" placeholder="Название">
+  <button class="addFormSubmitBtn" type="submit"><% if (type === 'update') { %>Изменить<% } else { %>Добавить<% } %></button>
+</form>

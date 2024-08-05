@@ -1,0 +1,38 @@
+<%- include('../page/layout-start.ejs', {title: title, books: books}) %>
+
+<main class="main">
+  <div class="container">
+    <div class="addBtnBlock">
+      <a class="addBtn" href="/api/books/book/create" class="button">Добавить книгу</a>
+    </div>
+    <h1><%= title %></h1>
+      <% if (books.length) { %>
+        <div class="table">
+          <div class="table__row">
+            <div class="table__headerText">№</div>
+            <div class="table__headerText">Название</div>
+            <div class="table__headerText">Авторы</div>
+            <div class="table__headerText">Операции</div>
+          </div>
+        <% books.forEach((book, idx) => { %>
+          <div class="table__row">
+            <div class="table__mainText"><%= idx + 1 %></div>
+            <div class="table__mainText"><%= book.title %></div>
+            <div class="table__mainText"><%= book.authors %></div>
+            <div class="table__mainText">
+              <a href="/api/books/book/view/<%= book.id %>" title="Посмотреть книгу"><img class="icon" src="/img/look.jpg" alt="Кнопка Посмотреть книгу"></a>
+              <a href="/api/books/book/update/<%= book.id %>" title="Изменить книгу"><img class="icon" src="/img/edit.jpg" alt="Кнопка Изменить книгу"></a>
+              <form class="table__form" method="post" action="/api/books/book/delete/<%= book.id %>">
+                <button class="submit_btn" title="Удалить книгу" type="submit"></button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+        </div>
+      <% } else { %>
+        <div>Книги не найдены</div>
+      <% } %>
+  </div>
+</main>
+
+<%- include('../page/layout-end.ejs') %>
