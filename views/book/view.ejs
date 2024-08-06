@@ -1,4 +1,4 @@
-<%- include('../page/layout-start.ejs', {title: title, book: book}) %>
+<%- include('../page/layout-start.ejs', {title: title, book: book, user: user}) %>
 
 <main class="main">
   <div class="container">
@@ -27,6 +27,26 @@
         </div>
       <% } %>
   </div>
+  <div class="container">
+    <h2>Обсуждение книги</h2>
+    <div class="commnentsCont bordered">
+      <div class="chatCont">
+        Пока нет обсуждений
+      </div>
+      <div class="sendCont">
+        <input class="usernameInp" name="usernameInp" placeholder="Укажите ваше имя" required></input>
+        <textarea class="msgInp" name="msgInp" placeholder="Введите сообщение" required></textarea>
+        <button type="submit" class="msgSendBtn">Отправить</button>
+      </div>
+    </div>
+  </div>
 </main>
+<%
+  const roomName = book.id;
+  //const socket = io.connect('/', {query: `roomName=${roomName}`});
+
+  //const list = document.querySelector('.chatCont');
+  //const userName = user.displayName;
+%>
 
 <%- include('../page/layout-end.ejs') %>

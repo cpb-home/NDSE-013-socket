@@ -1,5 +1,9 @@
 <div class="accountCont">
   <img src="/img/user.png" alt="Аккаунт">
   
-  <a href="/api/user/me" title="">Кабинет</a>
+  <% if (user) { %>
+    <a href="/api/user/me" title=""><%= user.displayName %></a>
+  <% } else { %>
+    <a href="/api/user/me" title="">Кабинет</a>
+  <% } %>
 </div>

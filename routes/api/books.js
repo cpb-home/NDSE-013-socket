@@ -1,10 +1,14 @@
 const express = require('express');
+const path = require('path');
+const http = require('http');
+const socketIO = require('socket.io');
 const router = express.Router();
 const Books = require('../../models/books');
 
 router.get('/', (req, res) => {
   res.render('index', {
-    title: "Главная"
+    title: "Главная",
+    user: req.user
   })
 });
 
@@ -14,7 +18,8 @@ router.get('/book', async (req, res) => {
     
     res.render('book/index', {
       title: "Библиотека",
-      books: books
+      books: books,
+      user: req.user
     })
   } catch (e) {
     console.log(`Ошибюка роута /: ${e}`);
@@ -30,10 +35,11 @@ router.get('/book/view/:id', async (req, res) => {
 
     if (idx === -1) {
       res.redirect('/404');
-    } else {
+    } else {console.log(req.user)
       res.render('book/view', {
         title: "Библиотека",
-        book: books[idx]
+        book: books[idx],
+        user: req.user
       })
     }
   } catch (e) {
@@ -45,7 +51,8 @@ router.get('/book/view/:id', async (req, res) => {
 router.get('/book/create', (req, res) => {
   res.render('book/create', {
     title: "Библиотека",
-    book: {}
+    book: {},
+    user: req.user
   })
 });
 
@@ -79,7 +86,8 @@ router.get('/book/update/:id', async (req, res) => {
 
     res.render('book/update', {
       title: 'Библиотека',
-      book: book
+      book: book,
+      user: req.user
     })
   } catch (e) {
     console.log(`Ошибюка роута /: ${e}`);
@@ -116,7 +124,8 @@ router.post('/book/delete/:id', async (req, res) => {
 
 router.get('/contacts', (req, res) => {
   res.render('contacts/index', {
-    title: 'Контакты'
+    title: 'Контакты',
+    user: req.user
   })
 })
 

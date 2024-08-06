@@ -6,7 +6,8 @@ const LocalStrategy = require('passport-local').Strategy;
 
 router.get('/login', (req, res) => {
   res.render('users/login', {
-    title: "Авторизация"
+    title: "Авторизация",
+    user: req.user
   })
 });
 
@@ -19,7 +20,8 @@ router.post('/login',
 
 router.get('/signup', (req, res) => {
   res.render('users/signup', {
-    title: "Регистрация"
+    title: "Регистрация",
+    user: req.user
   })
 });
 
@@ -52,89 +54,3 @@ router.get('/logout',  (req, res) => {
 })
 
 module.exports = router;
-
-
-/*
-const express = require('express');
-const router = express.Router();
-const Books = require('../../models/books');
-
-router.get('/login', (req, res) => {
-  res.render('users/login', {
-    title: "Авторизация",
-    book: {}
-  })
-});
-
-router.post('/login', async (req, res) => {
-  const { title, description, authors, favorite, fileCover, fileName, fileBook } = req.body;
-  const newBooks = new Books({
-    title,
-    description,
-    authors,
-    favorite,
-    fileCover,
-    fileName,
-    fileBook
-  });
-
-  try {
-    await newBooks.save();
-
-    res.redirect('/api/books/book');
-  } catch (e) {
-    console.log(`Ошибюка роута /: ${e}`);
-    res.redirect('/404');
-  }
-});
-
-router.get('/book/update/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const book = await Books.findById(id);
-
-    res.render('book/update', {
-      title: 'Библиотека',
-      book: book
-    })
-  } catch (e) {
-    console.log(`Ошибюка роута /: ${e}`);
-    res.redirect('/404');
-  }
-})
-
-router.post('/book/update/:id', async (req, res) => {
-  const { id } = req.params;
-  const { title, description, authors, favorite, fileCover, fileName, fileBook } = req.body;
-  
-  try {
-    await Books.findByIdAndUpdate(id, {title, description, authors, favorite, fileCover, fileName, fileBook});
-
-    res.redirect('/api/books/book/');
-  } catch (e) {
-    console.log(`Ошибюка роута /: ${e}`);
-    res.redirect('/404');
-  }
-})
-
-router.post('/book/delete/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    await Books.findByIdAndDelete(id);
-
-    res.redirect('/api/books/book');
-  } catch (e) {
-    console.log(`Ошибюка роута /: ${e}`);
-    res.redirect('/404');
-  }
-})
-
-router.get('/contacts', (req, res) => {
-  res.render('contacts/index', {
-    title: 'Контакты'
-  })
-})
-module.exports = router;
-*/
